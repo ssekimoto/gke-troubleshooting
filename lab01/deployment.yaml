@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-app
+  labels:
+    app: sample-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sample-app
+  template:
+    metadata:
+      labels:
+        app: sample-app
+    spec:
+      containers:
+      - name: sample-app
+        image: asia-northeast1-docker.pkg.dev/taro-demo/handson/javaapp:v3
+        resources:
+          limits:
+            memory: "128Mi"
+          requests:
+            memory: "128Mi"
+        ports:
+        - containerPort: 8080
